@@ -34,12 +34,19 @@ Pliki agenta w root projektu: `CLAUDE.md` (auto-load Claude Code) + `AGENTS.md` 
 1. **Cel** (Cxx) — po co, dla kogo, **sukces (mierzalny)**, zakres.
 2. **Teza** (Txx) — proponowane podejście.
 3. **Antyteza** (ATxx) — **najmocniejszy** kontrargument (steelman), nie słomiany strach na wróble.
-4. **Synteza** (Sxx) — rozstrzygnięcie + **KRYTERIUM** (co je rozstrzyga: pomiar/dowód). Synteza to *propozycja* — potwierdzana w Ewaluacji.
+4. **Synteza** (Sxx) — rozstrzygnięcie + **KRYTERIUM = warunek obalenia** (konkretny test/pomiar, który może OBLAĆ — nie „akceptowalny %", tylko liczba/próg z góry). Synteza to *propozycja* — potwierdzana w Ewaluacji. **Bez warunku obalenia synteza jest niesprawdzalna.**
 
 ## ⭐ Ewaluacja — rzecz NAJWAŻNIEJSZA („co się dzieje")
 Regularny dokument stanu projektu. Zasada: **żadnej tezy bez dowodu; nie zakładaj — sprawdź.** Łap własne błędy, zanim je ogłosisz (adwersarialnie podważaj własne wyniki).
 - **✅ Działa** (z dowodem/liczbą) · **❌ Nie działa / otwarte** · **🔄 Co się zmieniło** · **Czy tezy/syntezy się bronią?** · **➡️ Następne kroki**.
 - Aktualizuj **po każdym istotnym kroku** (eksperyment, deploy, ficzer, pomiar). To tu wychodzi prawda projektu — nie w założeniach.
+
+## 🚪 Dwie bramki jakości (po co dialektyka, a po co ewaluacja)
+Dialektyka i ewaluacja pilnują **dwóch różnych rzeczy** — potrzebujesz **obu**:
+- **Bramka epistemiczna — DIALEKTYKA:** czy *rozumiem*, czy *papuguję*. Rozbicie na tezę↔antytezę→syntezę jest **antywzorcem na „wykucie wierszyka"**: żeby wsadzić myśl w ten kształt, musisz nazwać napięcie i je rozwiązać — nie da się wyrecytować z pamięci. Wymusza zrozumienie zamiast powtórzenia.
+- **Bramka empiryczna — EWALUACJA:** czy synteza jest *prawdziwa w świecie*. Tego dialektyka **nie łapie** — łapie to liczba/test.
+
+**Dowód, dlaczego potrzeba obu:** „stitch bije ensemble" było czystą, zrozumianą, porządnie rozpisaną syntezą — i **fałszywą**, dopóki zbalansowany held-out jej nie zabił. Dialektyka nie złapała kontaminacji; złapała ją ewaluacja. Stąd reguła z pkt 4: **każda synteza wychodzi z doczepionym warunkiem obalenia** (test, który może ją wywrócić). Inaczej masz tylko jedną bramkę — i pewność, że rozumiesz coś, co jest nieprawdą.
 
 ## 📄 Finał każdej nitki: dokument LaTeX → PDF
 Dokumenty w Obsidianie to **warsztat** (dialektyka, ewaluacja). Dojrzała nitka/projekt **kończy się dokumentem LaTeX skompilowanym do `.pdf`** — to jest **artefakt-produkt**. Reguły, żeby wszystko wyglądało spójnie:

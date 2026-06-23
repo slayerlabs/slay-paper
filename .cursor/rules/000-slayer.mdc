@@ -1,0 +1,7 @@
+---
+description: Slayer — reguły projektu (źródło prawdy: AGENTS.md)
+alwaysApply: true
+---
+Przeczytaj `AGENTS.md` (pełne reguły) i `docs/INDEX.md` (mapa projektu), i trzymaj się ich:
+małe kroki · żadnej tezy bez dowodu · `git add` konkretne pliki · sekrety w `.env` ·
+**weryfikuj zanim ogłosisz** · **dowód przeczy Syntezie → STOP** · finał LaTeX → PDF.
