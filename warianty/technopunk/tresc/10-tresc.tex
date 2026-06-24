@@ -1,0 +1,69 @@
+% Treść — 2 kolumny (multicol).
+%
+% Dostępne makra brandowe:
+%   \glitchline{tekst}  — chromatic aberration na fragmencie tekstu
+%   \corr               — inline blok "corrupted" (czerwony marker)
+%   \corrk              — inline blok "corrupted" (ciemny marker)
+%   \slaycross          — mini celownik
+%   \disruptline        — linia szumu między sekcjami
+%   \noisebar[N]{label} — pasek statusu N% z labelką
+%   \slaybarcode[kod]   — pseudo-barcode z etykietą
+%
+% Sekcje mają automatyczny hex prefix (0x01, 0x02...) + glitch.
+% Użyj \subsection{} dla podsekcji z mniejszym hex prefixem.
+
+\begin{multicols}{2}
+
+\section{Wprowadzenie}
+
+Po co ten dokument i jakie pytanie stawiamy. Jedno zdanie tezy +
+jak ją zweryfikujemy (pomiar). Powiązanie z nitką dialektyczną
+(Teza $\to$ Synteza).
+
+\section{Metoda}
+
+Skąd dane, jak je przetwarzamy, jaki model/eksperyment.
+Definicje formalnie:
+\[
+  \mathrm{metryka} = \frac{1}{N}\sum_i f(x_i)
+\]
+
+\section{Wyniki}
+
+Tu ląduje empiria. Przykładowa tabela:
+
+\begin{table}[h]
+  \centering
+  \caption{Przykładowe wyniki.}
+  \begin{tabular}{lrr}
+    \toprule
+    Wariant & metryka $\downarrow$ & próbek \\
+    \midrule
+    baseline   & 1.80 & --- \\
+    nasz model & \glitchline{1.20} & --- \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\disruptline
+
+\section{Warunek obalenia}
+
+% Bramka empiryczna — NIE usuwaj tej sekcji.
+% Każda synteza musi nieść test/liczbę/próg, który mógłby ją wywrócić.
+Co konkretnie sfalsyfikowałoby tezę: test, liczba albo próg.
+Np. „jeśli metryka na held-oucie $>X$, teza upada".\,\corr
+
+\section{Dyskusja}
+
+Co wynik oznacza, gdzie się nie broni, co dalej.
+Uczciwie o ograniczeniach.
+
+\vspace{6pt}
+\noisebar[100]{DOKUMENT·KOMPLETNY}
+
+\vspace{4pt}
+{\fontsize{5.5}{5.5}\selectfont\ttfamily\color{BETON}%
+  \glitchline{SL/AI·LAB}~·~WROCŁAW~·~OFFLINE~BY~CHOICE~\slaycross[BETON!60]}
+
+\end{multicols}
