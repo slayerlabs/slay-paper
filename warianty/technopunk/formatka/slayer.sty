@@ -1,0 +1,364 @@
+% =====================================================================
+%  slayer.sty — WARIANT: TECHNOPUNK
+%
+%  Wersja brandowa formatki Slayer dla dokumentów technicznych,
+%  które mają nieść tożsamość wizualną projektu, nie tylko czytelność.
+%
+%  KIEDY UŻYWAĆ:
+%    - zewnętrzne raporty / evalsy / briefy idące poza zespół
+%    - dokumenty, gdzie marka ma pracować (pitch, prezentacja papierowa)
+%    - gdy treść jest już zwalidowana i czas na "opakowanie"
+%
+%  KIEDY NIE UŻYWAĆ:
+%    - wewnętrzne robocze notatki (za dużo wizualnego szumu)
+%    - dokumenty wymagające czystego print w BW (scan bands, HUD)
+%    - gdy output idzie do systemu parsującego PDF
+%
+%  FILOZOFIA (Teza / Antyteza / Synteza):
+%    T: Dokument Slayera powinien być rozpoznawalny wizualnie.
+%    A: Dekoracje obniżają czytelność i zwiększają narzut kompilacji.
+%    S: Wariant osobny — base sty (szablon-dokumentu/) zostaje czyste,
+%       technopunk to opt-in dla dojrzałych nitek.
+%    Warunek obalenia: jeśli wariant nie kompiluje się na BasicTeX
+%       bez dodatkowych paczek → trzeba spaść do base.
+%
+%  WYMAGANE PACZKI (poza standardowym BasicTeX):
+%    tlmgr install inter sourcecodepro pgfplots titlesec soul
+%                   eso-pic fancyhdr multicol mdframed ebgaramond
+%    (wszystkie dostępne w TeX Live 2024+)
+%
+%  KOLORY (brandbook Slayer AI Lab):
+%    KRAFT    #1F1E1B  — prawie czarny, ciepły
+%    BETON    #8A8880  — szary
+%    PAPIER   #F2EFE7  — kremowy (tło)
+%    ALERTRED #CC1713  — czerwony akcent
+%    KOBALT   #2B52D4  — niebieski akcent
+% =====================================================================
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{formatka/slayer}[2026/06/24 Slayer AI Lab — technopunk]
+
+% --- Kodowanie / język ---
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[polish]{babel}
+\usepackage{microtype}
+
+% --- FONTY ---
+% Inter — font systemowy brandbooka Slayer (nie Times/Computer Modern)
+\usepackage[sfdefault]{inter}
+% Source Code Pro — proxy dla DIN 1451 ENG (system log, metadata, hex labels)
+\usepackage[scale=0.82]{sourcecodepro}
+\renewcommand{\familydefault}{\sfdefault}
+
+% --- KOLORY BRANDBOOK ---
+\usepackage{xcolor}
+\definecolor{KRAFT}{HTML}{1F1E1B}
+\definecolor{BETON}{HTML}{8A8880}
+\definecolor{PAPIER}{HTML}{F2EFE7}
+\definecolor{ALERTRED}{HTML}{CC1713}
+\definecolor{KOBALT}{HTML}{2B52D4}
+\colorlet{sGhost}{BETON!25!PAPIER}
+\colorlet{sLightGrid}{BETON!18!PAPIER}
+
+% --- TŁO: PAPIER ---
+\usepackage{pagecolor}
+\pagecolor{PAPIER}
+\color{KRAFT}
+
+% --- UKŁAD (wąskie marginesy pod 2-kolumnowy layout) ---
+\usepackage[a4paper, left=1.8cm, right=1.8cm, top=2.2cm, bottom=2.8cm]{geometry}
+\usepackage{parskip}
+\setlength{\parskip}{0.35em}
+% Body: 9.5pt jak IEEE/ACM
+\AtBeginDocument{\fontsize{9.5}{13}\selectfont}
+
+% --- MATEMATYKA ---
+\usepackage{amsmath,amssymb}
+\usepackage{siunitx}
+
+% --- TABELE / GRAFIKA / WYKRESY ---
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18,
+  every axis/.append style={
+    axis background/.style={fill=PAPIER},
+    grid style={sLightGrid},
+    tick style={color=BETON},
+    label style={color=BETON, font=\fontsize{7}{7}\selectfont},
+    legend style={fill=PAPIER, draw=sLightGrid,
+                  font=\fontsize{7}{7}\selectfont},
+    axis line style={color=sGhost, line width=0.4pt},
+    tick label style={font=\fontsize{7}{7}\selectfont},
+  }
+}
+
+% --- PODPISY ---
+\usepackage{caption}
+\captionsetup{font={scriptsize}, labelfont={bf}, labelsep=period,
+              textfont={color=BETON}, skip=4pt}
+
+% --- LINKI ---
+\usepackage[hidelinks]{hyperref}
+
+% --- 2-KOLUMNY ---
+\usepackage{multicol}
+\setlength{\columnsep}{0.55cm}
+\setlength{\columnseprule}{0.3pt}
+\def\columnseprulecolor{\color{sLightGrid}}
+
+% =====================================================================
+%  TIKZ
+% =====================================================================
+\usepackage{eso-pic,tikz}
+\usetikzlibrary{calc}
+
+% =====================================================================
+%  ELEMENTY GRAFICZNE BRANDOWE
+% =====================================================================
+
+% Celownik — główny element graficzny brandbooka
+\newcommand{\slaycross}[1][ALERTRED]{%
+  \tikz[baseline=-0.5ex, scale=0.50]{
+    \draw[#1, line width=0.45pt] (0,-0.13)--(0,0.13);
+    \draw[#1, line width=0.45pt] (-0.13,0)--(0.13,0);
+    \draw[#1, line width=0.45pt] (0,0) circle(0.075);
+  }%
+}
+
+% Pseudo-barcode — element identyfikacyjny seryjny
+\newcommand{\slaybarcode}[1][SL-DOC]{%
+  \begin{tikzpicture}[baseline=0.5ex]
+    \foreach \xx/\ww in {
+      0/1.1, 1.5/0.5, 2.4/1.7, 4.5/0.5, 5.4/1.0,
+      6.8/0.5, 7.7/2.0, 10.1/0.5, 11.0/1.2, 12.6/0.5,
+      13.5/1.6, 15.5/0.5, 16.3/1.0, 17.7/2.0, 20.1/0.5,
+      20.9/0.5, 21.8/1.6, 23.8/1.0, 25.3/0.5, 26.2/1.6}{
+      \fill[KRAFT]({\xx*0.036cm},0) rectangle({(\xx+\ww)*0.036cm},0.18cm);
+    }
+    \node[below=0pt, font=\fontsize{4}{4}\selectfont\ttfamily, text=BETON]
+      at(0.52cm,0){#1};
+  \end{tikzpicture}%
+}
+
+% Noise progress bar — status / procent
+\newcommand{\noisebar}[2][83]{%
+  \begin{tikzpicture}[baseline=-0.5ex]
+    \fill[sLightGrid](0,0) rectangle(2.6cm,0.14cm);
+    \fill[KRAFT,opacity=0.65](0,0) rectangle({#1*0.026cm},0.14cm);
+    \fill[ALERTRED,opacity=0.5]({#1*0.026cm-0.03cm},0)
+      rectangle({#1*0.026cm+0.015cm},0.14cm);
+    \node[right, font=\fontsize{5}{5}\selectfont\ttfamily, text=BETON]
+      at(2.65cm,0.07cm){\MakeUppercase{#2}};
+  \end{tikzpicture}%
+}
+
+% Linia szumu między sekcjami (opcjonalny separator)
+\newcommand{\disruptline}{%
+  \par\vspace{1pt}%
+  \begin{tikzpicture}[line width=0pt]
+    \foreach \xi in {0,0.05,...,1.0}{
+      \pgfmathsetmacro{\hh}{mod(\xi*37+0.12,0.16)+0.02}%
+      \fill[KRAFT,opacity={0.035+mod(\xi*53,0.07)}]
+        ({\xi*\linewidth},0) rectangle({(\xi+0.035)*\linewidth},{\hh cm});
+    }
+    \draw[ALERTRED,opacity=0.09] (0,0.09cm) -- (\linewidth,0.09cm);
+  \end{tikzpicture}%
+  \par\vspace{1pt}%
+}
+
+% =====================================================================
+%  GLITCH: chromatic aberration
+%  KIEDY: podkreślenie kluczowych danych / wyników
+%  KIEDY NIE: zwykły tekst (niszczy czytelność)
+% =====================================================================
+\newcommand{\glitchline}[1]{%
+  \mbox{%
+    \makebox[0pt][l]{\hspace{2.4pt}\raisebox{-0.7pt}{\textcolor{ALERTRED!50}{#1}}}%
+    \makebox[0pt][l]{\hspace{-1.6pt}\raisebox{0.6pt}{\textcolor{KOBALT!32}{#1}}}%
+    \makebox[0pt][l]{\hspace{0.6pt}\raisebox{1.3pt}{\textcolor{KRAFT!10}{#1}}}%
+    {#1}%
+  }%
+}
+
+% Blok "corrupted" — inline marker błędu/ostrzeżenia
+\newcommand{\corr}{%
+  \tikz[baseline=0.12ex, inner sep=0]{%
+    \fill[ALERTRED!65] (0,0) rectangle (0.48em,0.74em);}%
+}
+\newcommand{\corrk}{%
+  \tikz[baseline=0.12ex, inner sep=0]{%
+    \fill[KRAFT!35] (0,0) rectangle (0.34em,0.74em);}%
+}
+
+% =====================================================================
+%  TŁO STRON: crosshair pattern + scan bands + HUD corners
+%  Wszystkie elementy < 5% opacity — dekoracja, nie informacja
+% =====================================================================
+\AddToShipoutPictureBG{%
+  % Wzór celowników (elementy graficzne brandbooka, sekcja 05)
+  \begin{tikzpicture}[remember picture,overlay,
+      line width=0.25pt, color=KRAFT, opacity=0.042]
+    \foreach \xi in {0.16,0.31,...,0.85}{
+      \foreach \yi in {0.13,0.25,...,0.88}{
+        \draw($(current page.south west)!\xi!(current page.south east)!%
+               \yi!(current page.north west)$)
+          ++(0,-0.08cm)--(0,0.16cm);
+        \draw($(current page.south west)!\xi!(current page.south east)!%
+               \yi!(current page.north west)$)
+          ++(-0.08cm,0)--(0.16cm,0);
+        \draw($(current page.south west)!\xi!(current page.south east)!%
+               \yi!(current page.north west)$) circle(0.047cm);
+      }
+    }
+  \end{tikzpicture}%
+  % Scan bands — CRT artifact, full i partial width
+  \begin{tikzpicture}[remember picture,overlay]
+    \fill[ALERTRED,opacity=0.028]($(current page.south west)+(0,{0.193\paperheight})$)
+      rectangle+(\paperwidth,4.5pt);
+    \fill[KOBALT,  opacity=0.018]($(current page.south west)+(0,{0.372\paperheight})$)
+      rectangle+(\paperwidth,2pt);
+    \fill[KRAFT,   opacity=0.038]($(current page.south west)+(0,{0.578\paperheight})$)
+      rectangle+(\paperwidth,1.5pt);
+    \fill[ALERTRED,opacity=0.017]($(current page.south west)+(0,{0.765\paperheight})$)
+      rectangle+(\paperwidth,3pt);
+    \fill[ALERTRED,opacity=0.033]($(current page.south west)+(0.11\paperwidth,{0.451\paperheight})$)
+      rectangle+(0.72\paperwidth,2pt);
+    \fill[KRAFT,   opacity=0.024]($(current page.south west)+(0.04\paperwidth,{0.681\paperheight})$)
+      rectangle+(0.89\paperwidth,1.5pt);
+    \fill[KRAFT,opacity=0.020]($(current page.south west)+({0.315\paperwidth},0)$)
+      rectangle($(current page.north west)+({0.316\paperwidth},0)$);
+  \end{tikzpicture}%
+  % HUD corners — L-brackets z micro-labelami identyfikacyjnymi
+  \begin{tikzpicture}[remember picture,overlay]
+    \draw[BETON,opacity=0.45,line width=0.45pt]
+      ($(current page.north west)+(1.0cm,-0.9cm)$) -- ++(0,0.28cm) -- ++(0.28cm,0);
+    \node[anchor=south west, font=\fontsize{4.5}{4.5}\selectfont\ttfamily,
+          text=BETON, opacity=0.48]
+      at($(current page.north west)+(1.33cm,-0.94cm)$){SL/AI·LAB};
+    \draw[BETON,opacity=0.45,line width=0.45pt]
+      ($(current page.north east)+(-1.0cm,-0.9cm)$) -- ++(0,0.28cm) -- ++(-0.28cm,0);
+    \node[anchor=south east, font=\fontsize{4.5}{4.5}\selectfont\ttfamily,
+          text=BETON, opacity=0.48]
+      at($(current page.north east)+(-1.33cm,-0.94cm)$){X:2847·Y:0194};
+    \draw[BETON,opacity=0.40,line width=0.45pt]
+      ($(current page.south west)+(1.0cm,0.9cm)$) -- ++(0,-0.28cm) -- ++(0.28cm,0);
+    \node[anchor=north west, font=\fontsize{4.5}{4.5}\selectfont\ttfamily,
+          text=BETON, opacity=0.40]
+      at($(current page.south west)+(1.33cm,0.94cm)$){PROTO·01};
+    \draw[ALERTRED,opacity=0.28,line width=0.45pt]
+      ($(current page.south east)+(-1.0cm,0.9cm)$) -- ++(0,-0.28cm) -- ++(-0.28cm,0);
+    \node[anchor=north east, font=\fontsize{4.5}{4.5}\selectfont\ttfamily,
+          text=ALERTRED, opacity=0.35]
+      at($(current page.south east)+(-1.33cm,0.94cm)$){ERR:0x00};
+  \end{tikzpicture}%
+}
+
+% =====================================================================
+%  SEKCJE: hex prefix (0x01) + glitch na tytule
+%  Hex prefix = metafora "adresu" w systemie — czytelny dla czytelnika
+%  technicznego, ozdobny dla reszty
+% =====================================================================
+\usepackage{titlesec}
+
+\titleformat{\section}
+  {\fontsize{8.5}{10}\selectfont\bfseries\color{KRAFT}}
+  {{\fontsize{6.5}{6.5}\selectfont\ttfamily\color{ALERTRED!80}%
+    0x\ifnum\value{section}<16 0\fi\arabic{section}}%
+   ~{\small\color{BETON}›}}{0.35em}
+  {\glitchline}
+  [\vspace{0.5pt}{\color{sLightGrid}\dotfill}\vspace{1.5pt}]
+
+\titleformat{\subsection}
+  {\fontsize{8}{8}\selectfont\itshape\color{BETON}}
+  {{\fontsize{5.5}{5.5}\selectfont\ttfamily\color{ALERTRED!45}%
+    0x\ifnum\value{subsection}<16 0\fi\arabic{subsection}}~}{0.25em}{}
+
+\titlespacing{\section}{0pt}{0.75em}{0.3em}
+\titlespacing{\subsection}{0pt}{0.4em}{0.18em}
+
+% =====================================================================
+%  STOPKA
+% =====================================================================
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[L]{\slaybarcode[SL-DOC]}
+\fancyfoot[C]{{\fontsize{5}{5}\selectfont\ttfamily\color{BETON}%
+  [\,SCAN:OK\,·\,SIG:\glitchline{OK}\,]}}
+\fancyfoot[R]{\slaycross[BETON!70]\enspace\small\color{BETON}\thepage}
+
+% =====================================================================
+%  MAKRO NAGŁÓWKA (1/4 strony)
+%
+%  Trójkolumnowy layout: [logo] | [tytuł + autor] | [metadata]
+%  Założenie: logo jako plik slayer-logo.png w katalogu dokumentu.
+%  Bez logo: zamień \includegraphics na \slayertitletext.
+%
+%  #1 = tytuł (krótki! wraps w raggedright 9pt)
+%  #2 = autor / kolektyw
+%  #3 = data / wersja
+% =====================================================================
+\newcommand{\slayertitle}[3]{%
+  \thispagestyle{fancy}%
+  \noindent
+  % Lewy blok: logo
+  \begin{minipage}[t]{0.21\linewidth}
+    \vspace{0pt}%
+    \IfFileExists{slayer-logo.png}{%
+      \includegraphics[width=\linewidth]{slayer-logo.png}%
+    }{%
+      % Fallback: typograficzny placeholder
+      {\fontsize{14}{14}\selectfont\bfseries SLAYER\par}%
+      {\fontsize{7}{7}\selectfont\bfseries AI~LAB\par}%
+    }%
+    \par\vspace{3pt}%
+    {\fontsize{5}{5}\selectfont\ttfamily\color{BETON}%
+      BUILT IN POLAND\\DESIGNED FOR THE FUTURE}%
+    \par\vspace{4pt}%
+    \slaycross\enspace{\fontsize{5}{5}\selectfont\ttfamily\color{BETON}WROCŁAW · PL}%
+  \end{minipage}%
+  \hspace{0.015\linewidth}%
+  % Środkowy blok: tytuł
+  \begin{minipage}[t]{0.455\linewidth}
+    \vspace{0pt}%
+    \hfuzz=10pt%
+    {\fontsize{9}{12}\selectfont\bfseries\raggedright\glitchline{#1}\par}%
+    \vspace{4pt}%
+    {\color{ALERTRED}\hrule height 1pt}\vspace{3pt}%
+    {\small\textsc{#2}\par}%
+    {\fontsize{6}{6}\selectfont\ttfamily\color{BETON}%
+      #3\enspace\textcolor{ALERTRED!70}{[VER:1.0]}\par}%
+    \vspace{4pt}%
+    \noisebar[90]{DOKUMENT·OK}%
+  \end{minipage}%
+  \hspace{0.025\linewidth}%
+  % Prawy blok: metadata + mini scanblock
+  \begin{minipage}[t]{0.21\linewidth}
+    \vspace{0pt}%
+    \raggedleft%
+    \slaybarcode[SL-DOC]%
+    \par\vspace{4pt}%
+    {\fontsize{5}{5}\selectfont\ttfamily\color{BETON}%
+      \glitchline{STATUS:OK}\\CHK:----}%
+    \par\vspace{6pt}%
+    % Mini scan noise block — dekoracja identyfikacyjna
+    \begin{tikzpicture}
+      \fill[PAPIER](0,0) rectangle(\linewidth,0.9cm);
+      \foreach \yi in {0,0.1,...,1.0}{
+        \pgfmathsetmacro{\ww}{mod(\yi*43+0.2,0.8)+0.1}%
+        \pgfmathsetmacro{\xo}{mod(\yi*31,0.25)}%
+        \fill[KRAFT,opacity={0.03+mod(\yi*61,0.04)}]
+          ({\xo*\linewidth},{\yi*0.9cm})
+          rectangle({(\xo+\ww)*\linewidth},{\yi*0.9cm+0.055cm});
+      }
+      \fill[ALERTRED,opacity=0.07](0,0.40cm) rectangle(\linewidth,0.42cm);
+    \end{tikzpicture}%
+  \end{minipage}%
+  \par\vspace{6pt}%
+  {\color{sLightGrid}\hrule height 0.3pt}\vspace{1pt}%
+  {\color{ALERTRED}\hrule height 1.2pt}%
+  \vspace{8pt}%
+}

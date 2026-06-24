@@ -1,0 +1,26 @@
+% Strona tytułowa — uzupełnij poniższe pola.
+%
+% Tytuł: krótki, wraps w raggedright 9pt. Jeśli długi — rozważ skrót
+% w nagłówku i pełen tytuł jako \section* na początku treści.
+%
+% Logo: umieść slayer-logo.png w katalogu wariantu.
+% Formatka wykryje brak pliku i wstawi typograficzny placeholder.
+
+\slayertitle
+  {Tytuł dokumentu}%                    ← krótki tytuł
+  {Autor · Kolektyw Slayer · v0.1}%     ← autor / wersja
+  {Data}%                               ← np. Czerwiec 2026
+
+% Abstract full-width (opcjonalny — usuń jeśli zbędny)
+\noindent
+{\fontsize{6}{6}\selectfont\ttfamily\color{ALERTRED!70}%
+  [\,ABSTRACT\,·\,LANG:PL\,]}\par\vspace{2pt}
+{\fontsize{8.5}{12}\selectfont\noindent
+Krótkie streszczenie (3--5 zdań): co badamy, na jakich danych,
+jaki wynik. Empiria, nie deklaracje.
+\corrk\;{\fontsize{5.5}{5.5}\selectfont\ttfamily\color{BETON}STATUS:OK}}
+
+\vspace{4pt}
+{\color{sLightGrid}\hrule height 0.3pt}\vspace{1pt}%
+{\color{ALERTRED}\hrule height 0.8pt}
+\vspace{8pt}
