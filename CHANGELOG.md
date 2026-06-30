@@ -40,5 +40,8 @@ zachowując pipeline LaTeX/CI, Katalog grzechów i Bramkę-na-ramę.
   z własnym testem; explicite „brak checklistu by design, wymaga zewnętrznej interwencji".
 - **Katalog brak tagu `[B3]`** → jawna nota, że jest zamierzony (self-reference wall).
 - **`generate-ledger.py` brak multiline YAML** → docstring: parser CELOWO minimalny.
-- **INDEX puste tabele** → komentarze `<!-- TODO: podmień lub usuń po pierwszym użyciu -->`.
+- **INDEX puste tabele + redundancja z ledgerem** (uwaga D + drobne) → ręczne tabele usunięte;
+  `generate-ledger.py` generuje teraz CAŁOŚĆ (Cele · Nitki T↔AT→S rekonstruowane z relacji ·
+  Decyzje · Pozostałe węzły). INDEX = jedno źródło prawdy (frontmatter); puste sekcje pokazują
+  jawne `_(brak)_`, nie stub-tabele.
 - **INSTRUKCJA straciła inline przykłady** → przywrócony mini-przykład gotowej Syntezy.
