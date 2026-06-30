@@ -7,6 +7,7 @@ on:
   push:
     paths:
       - 'szablon-dokumentu/**'
+      - 'scripts/lint-math-unicode.py'
       - '.github/workflows/latex.yml'
   pull_request:
   workflow_dispatch:
@@ -17,29 +18,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Lint — matematyka w LaTeX, nie unicode
-        run: |
-          python3 - <<'EOF'
-          import sys, glob, re
-          # Celujemy w greke + operatory/relacje matematyczne (klasa, ktora lamie
-          # inputenc, np. U+0394 Delta). NIE polskie znaki (ąćęłńóśźż OK),
-          # NIE typograficzne separatory (·) ani strzalki w prozie.
-          BAD = set("ΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩαβγδεζηθικλμνξοπρστυφχψω"
-                    "≤≥≠≈±×÷√∞∑∏∫∂∇⟂∈∉⊂⊆⊇∪∩∀∃⇒⇔≅≡∝∅")
-          hits = []
-          for f in glob.glob("szablon-dokumentu/**/*.tex", recursive=True):
-              for i, line in enumerate(open(f, encoding="utf-8"), 1):
-                  code = re.sub(r"(?<!\\)%.*$", "", line)  # pomin komentarze (nie renderuja sie)
-                  for ch in code:
-                      if ch in BAD:
-                          hits.append((f, i, ch))
-          if hits:
-              print("Unicode matematyczny w renderowanym .tex — uzyj LaTeX (np. $\\Delta$, $\\le$):")
-              for f, i, ch in hits[:50]:
-                  print(f"  {f}:{i}  «{ch}» (U+{ord(ch):04X})")
-              sys.exit(1)
-          print("OK: brak unicode matematycznego w tresci — zgodne z twarda regula formatki.")
-          EOF
+      - name: Lint — matematyka zawsze w LaTeX, nigdy unicode (tex + docs)
+        run: python3 scripts/lint-math-unicode.py szablon-dokumentu docs README.md AGENTS.md CHANGELOG.md
 
       - name: Kompilacja szablonu → PDF
         uses: xu-cheng/latex-action@v3

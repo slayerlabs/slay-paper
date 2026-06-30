@@ -3,8 +3,9 @@ type: runbook
 id: RB-LATEX-CI
 title: "Runbook: dokument LaTeX → PDF w CI (formatka osobno od treści)"
 status: aktywny
-data: 2026-06-23
 author: Arkadiusz Słota
+date: 2026-06-23
+created_at: 2026-06-23
 ---
 
 # Runbook — LaTeX → PDF w CI
@@ -13,7 +14,7 @@ author: Arkadiusz Słota
 > kompilowany automatycznie do PDF. Cel: **spójny format** dla wszystkich dokumentów
 > + artefakt do prezentacji / ściąga przed prelekcją. Działający przykład: `TFT-DuoCoach/paper/`.
 
-## Zasada nadrzędna: formatka ⟂ treść
+## Zasada nadrzędna: formatka osobno od treści
 Rozdziel **wygląd** od **treści**, żeby dało się podmienić formatkę bez ruszania merytoryki:
 ```
 paper/
