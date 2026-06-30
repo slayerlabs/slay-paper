@@ -14,21 +14,30 @@ slay-paper/
 │   └── tresc/
 │       ├── 00-strona-tytulowa.tex   ← tytuł + PODPIS autorem + wykres z podpisem
 │       └── 10-tresc.tex             ← body: tylko sekcje/akapity (to piszesz)
-├── .github/workflows/latex.yml  ← CI: .tex → PDF (artefakt)
-└── docs/
-    ├── INSTRUKCJA-Dokumenty-Dialektyczne.md   ← schemat pracy (dialektyka + ewaluacja)
+├── .github/workflows/            ← CI: .tex → PDF (artefakt) + lint unicode-math + ledger-check
+├── scripts/generate-ledger.py   ← auto-ledger INDEX z frontmatteru węzłów
+└── docs/                         ← WARSZTAT: dialektyka + ewaluacja (knowledge-engineering)
+    ├── INDEX.md                  ← mapa nitek + ledger (ZACZNIJ TU)
+    ├── 00-Cele/ 10-Tezy/ 15-Antytezy/ 25-Syntezy/ 20-Decyzje/ 90-Ewaluacja/ 60-Reference/  ← role-foldery + _TEMPLATE.md
+    ├── INSTRUKCJA-Dokumenty-Dialektyczne.md   ← schemat pracy (4 bramki + pętla empiryczna)
+    ├── Katalog-Grzechow-Rozumowania.md        ← 12 trybów porażki (checklist bramek 0–2)
+    ├── Bramka-Na-Rame.md                      ← bramka 3 (zewnętrzność, notatka robocza)
     └── Runbook-LaTeX-CI.md                    ← jak ustawić LaTeX→PDF w CI
 ```
 
 ## Schemat pracy (skrót)
-1. **Warsztat** (Obsidian / `docs/`): Cel → Teza ↔ Antyteza → Synteza, a nad wszystkim ⭐**Ewaluacja** („co się NAPRAWDĘ dzieje", żadnej tezy bez dowodu).
+1. **Warsztat** (`docs/`): Cel → Teza ↔ Antyteza → Synteza → Decyzja (ADR), a nad wszystkim ⭐**Ewaluacja** + pętla empiryczna („co się NAPRAWDĘ dzieje", żadnej tezy bez dowodu). Szkielet role-folderów z `_TEMPLATE.md` jest w repo.
 2. **Finał** dojrzałej nitki: **dokument LaTeX → PDF** (ten szablon). Obsidian = warsztat; PDF = artefakt-produkt.
 
-## Dwie bramki jakości (rdzeń metody)
-- **Epistemiczna = dialektyka** — czy *rozumiem*, czy papuguję (antywzorzec na wykucie wierszyka).
-- **Empiryczna = warunek obalenia** doczepiony do każdej syntezy — test/liczba, która może ją wywrócić.
+## Cztery bramki jakości (rdzeń metody)
+| # | Bramka | Łapie |
+|---|---|---|
+| **0** | logiczno-definicyjna | bełkot (GIGO) — niezdefiniowane / niefalsyfikowalne |
+| **1** | epistemiczna (dialektyka) | wykucie wierszyka — czy *rozumiem*, czy papuguję |
+| **2** | empiryczna (ewaluacja) | proxy / pareidolia — **warunek obalenia** doczepiony do syntezy |
+| **3** | na ramę (zewnętrzność) | ślepota ramy — czy w ogóle zadałem właściwe pytanie |
 
-Sama dialektyka nie łapie błędu empirycznego (zrozumiana synteza bywa fałszywa) — łapie go ewaluacja. Dlatego **żadna synteza bez warunku obalenia.** Szczegóły: `docs/INSTRUKCJA-Dokumenty-Dialektyczne.md`.
+Dialektyka (1) nie łapie błędu empirycznego — zrozumiana synteza bywa fałszywa, łapie ją ewaluacja (2). Dlatego **żadna synteza bez warunku obalenia.** Pełny model + procedura (pętla empiryczna baseline-first): [AGENTS.md](AGENTS.md) §5–6 · [docs/INSTRUKCJA-Dokumenty-Dialektyczne.md](docs/INSTRUKCJA-Dokumenty-Dialektyczne.md). Bramka 3 nie jest w pełni automatyzowalna: [docs/Bramka-Na-Rame.md](docs/Bramka-Na-Rame.md).
 
 ## Pliki agenta (vibe-coding)
 `AGENTS.md` = źródło prawdy reguł; `CLAUDE.md` i `.cursor/rules/` tylko odsyłają tam (jedno źródło, zero rozjazdu między narzędziami). Kopiując do projektu — uzupełnij sekcję „Kontekst projektu" w `AGENTS.md`.
@@ -39,9 +48,9 @@ Sama dialektyka nie łapie błędu empirycznego (zrozumiana synteza bywa fałszy
 - **Wykres + podpis na pierwszej stronie** (empiria od razu widoczna) · **podpis autorem**.
 
 ## Jak użyć w nowym projekcie
-1. Skopiuj `szablon-dokumentu/` → `<projekt>/paper/`.
-2. Pisz w `paper/tresc/`, zostaw `paper/formatka/`.
-3. Dodaj workflow CI (jak `.github/workflows/latex.yml`) → push buduje PDF jako artefakt.
+1. **Warsztat:** skopiuj `docs/` (INDEX + role-foldery + `_TEMPLATE.md`) i `AGENTS.md`; uzupełnij „Kontekst projektu". Twórz węzły z `_TEMPLATE.md`, każdy = wpis w INDEX (`python3 scripts/generate-ledger.py`).
+2. **Artefakt:** skopiuj `szablon-dokumentu/` → `<projekt>/paper/`; pisz w `paper/tresc/`, zostaw `paper/formatka/`.
+3. **CI:** dodaj workflow (jak `.github/workflows/latex.yml`) → push buduje PDF jako artefakt + lint unicode + ledger-check.
 
 ## Kompilacja lokalnie
 `cd szablon-dokumentu && latexmk -pdf main.tex` (lub `pdflatex main.tex` ×2).

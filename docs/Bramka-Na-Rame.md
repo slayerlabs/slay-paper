@@ -1,8 +1,20 @@
+---
+type: reference
+id: R-RAMA
+title: "Bramka na ramę i zewnętrzność (bramka 3 — notatka robocza)"
+status: w-dyskusji
+parents: []
+author: Arkadiusz Słota
+date: 2026-06-23
+created_at: 2026-06-23
+---
+
 # Bramka na ramę i zewnętrzność (notatka robocza)
 
 > Warstwa głębiej niż [[Katalog-Grzechow-Rozumowania]]. Zapis rozważań do kontynuacji.
 > Uwaga uczciwa: framingi poniżej są autorstwa LLM (RLHF-stronniczy ku zgodzie).
 > Waż je asymetrycznie: **niezgodę modelu traktuj ciężej niż jego zgodę**.
+> **Miejsce w kanonie:** to **bramka 3 — na ramę** (4 bramki: [AGENTS.md §5](../AGENTS.md)). Bramki 0–2 pilnują *twierdzeń*; ta pilnuje *ramy*, w której twierdzenia w ogóle powstają.
 
 ## Problem
 
@@ -77,3 +89,6 @@ Pierwsze liczby zamiast kolejnej godziny rozważań:
 
 Jeśli istnieje sposób na **kompletną** automatyczną bramkę-na-ramę (bez agenta z własną stawką),
 punkt 2 i 4 są błędne i notatkę trzeba przepisać. Dotąd: brak takiego mechanizmu = teza trzyma.
+
+## Powiązania
+[[INDEX]] · [[Katalog-Grzechow-Rozumowania]] · [[INSTRUKCJA-Dokumenty-Dialektyczne]] · kontrakt: [AGENTS.md](../AGENTS.md).
