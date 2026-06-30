@@ -29,6 +29,8 @@ dany grzech pilnuje. Antyteza jest podana dosłownie (objaw, jak brzmi na głos)
 zawsze kończy się **testem, który łapie ten grzech u Ciebie samego** — bo własnego błędu nie
 złapiesz regułą, którą da się wyrecytować, tylko pytaniem, na które trzeba odpowiedzieć dowodem.
 
+**Brak tagu `[B3]` jest zamierzony:** bramka 3 nie ma checklistu do wyrecytowania — recytowalna reguła siedziałaby w tej samej ramie (self-reference wall). Łapie ją **zewnętrzna interwencja** (człowiek z własną stawką), nie 13. test z tej listy. Patrz [[Bramka-Na-Rame]].
+
 ---
 
 ## Katalog

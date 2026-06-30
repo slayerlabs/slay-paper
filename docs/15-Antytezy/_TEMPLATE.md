@@ -11,7 +11,7 @@ created_at: <YYYY-MM-DD>
 
 # AT<N> — <kontrteza> (steelman)
 
-## Antyteza (najmocniejsza wersja, ≥3 punkty — NIE strawman)
+## Antyteza (najmocniejsza wersja, co najmniej 3 punkty — NIE strawman)
 1. N1: <...>
 2. N2: <...>
 3. N3: <...>

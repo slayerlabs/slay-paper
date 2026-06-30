@@ -29,7 +29,7 @@ To **nie** folder z notatkami. To **knowledge-engineering system**: dokumentujem
 |---|---|---|
 | `00-Cele/` | po co (mierzalny sukces + kryterium falsyfikowalne) | `C` |
 | `10-Tezy/` | propozycja podejścia | `T` |
-| `15-Antytezy/` | **steelman** kontrargumentu (≥3 punkty, NIE strawman) | `AT` |
+| `15-Antytezy/` | **steelman** kontrargumentu ($\ge 3$ punkty, NIE strawman) | `AT` |
 | `25-Syntezy/` | rozstrzygnięcie przez zmienną kontekstową + **kryterium obalenia** | `S` |
 | `20-Decyzje/` | ADR (decyzja podjęta): Reject/Implements/Reversibility/Action items | `D` |
 | `90-Ewaluacja/` | ⭐ STAN: co działa (z liczbą), co nie, co się zmieniło — **rdzeń, nie dodatek** | — |
@@ -40,7 +40,7 @@ Nie twórz innych top-level role-folderów. Dane/domenę trzymaj w `60-Reference
 
 ## 4. Dialektyka: Cel → Teza ↔ Antyteza → Synteza → Decyzja
 - **Teza ↔ Antyteza:** jeśli nie umiesz w **jednym zdaniu** napisać Antytezy brzmiącej **realnie przekonująco** → to nie Teza, to ADR (`20-Decyzje/`). To wymusza prawdziwe myślenie o alternatywach, nie post-fakto racjonalizację.
-- **Synteza ≠ binarny wybór:** integruje T+AT przez **zmienną kontekstową**; wychodzi z **warunkiem obalenia** (liczba/test/próg z góry). Bez niego synteza jest niesprawdzalna — co najwyżej *zrozumiana* (bramka 1), nie *sprawdzona* (bramka 2).
+- **Synteza $\ne$ binarny wybór:** integruje T+AT przez **zmienną kontekstową**; wychodzi z **warunkiem obalenia** (liczba/test/próg z góry). Bez niego synteza jest niesprawdzalna — co najwyżej *zrozumiana* (bramka 1), nie *sprawdzona* (bramka 2).
 
 ## 5. CZTERY bramki jakości (potrzebujesz WSZYSTKICH — każda łapie inny błąd)
 | # | Bramka | Pyta | Łapie | Kto/jak |
@@ -52,7 +52,13 @@ Nie twórz innych top-level role-folderów. Dane/domenę trzymaj w `60-Reference
 
 - **Kolejność błędu:** bramka 0 łapie bełkot zanim w ogóle wejdzie w formę; 1 — czy myśl jest moja; 2 — czy jest prawdziwa; 3 — czy zadałem właściwe pytanie w ogóle.
 - **Dowód, że 1 nie wystarcza:** „stitch bije ensemble" było czystą, *zrozumianą* syntezą — i **fałszywą**, dopóki zbalansowany held-out jej nie zabił. Dialektyka nie złapała kontaminacji; złapała ją ewaluacja. Stąd: **każda synteza wychodzi z doczepionym warunkiem obalenia**.
-- **Bramka 3 nie jest w pełni automatyzowalna** (self-reference wall: co specyfikujesz, jest wewnątrz ramy i dziedziczy jej ślepe plamy). Marker prawdziwej zewnętrzności = **obojętność, nie opór** (anty-Ty to Ty z minusem — ta sama oś, maksymalnie wchłanialny). Szczegóły i mechanizmy na te ~80%: [docs/Bramka-Na-Rame.md](docs/Bramka-Na-Rame.md). Tryby porażki rozumowania (12 grzechów) jako checklist 0–2: [docs/Katalog-Grzechow-Rozumowania.md](docs/Katalog-Grzechow-Rozumowania.md).
+- **Bramka 3 nie jest w pełni automatyzowalna** (self-reference wall: co w pełni wyspecyfikujesz, jest wewnątrz ramy i dziedziczy jej ślepe plamy). Marker prawdziwej zewnętrzności = **obojętność, nie opór** (anty-Ty to Ty z minusem — ta sama oś, ten sam słownik, maksymalnie wchłanialny).
+  - **Co łapie automat (~80%)** — każdy mechanizm to HIPOTEZA z własnym testem:
+    1. **Frontier jako enumerator ram** (nie walidator): „wymień 5 tradycji, które uznałyby to za źle postawione, i ich najmocniejszy kontrargument". *Test:* daje coś, czego sam bym nie wymyślił?
+    2. **Consistency-validator wycelowany NA ZEWNĄTRZ**: lint spójności po heterogenicznym korpusie zewnętrznym; niezgoda niezależnych źródeł = pęknięcie ramy. *Test:* precision/recall na wstrzykniętych sprzecznościach.
+    3. **Rekomender odległości ramowej**: ściągaj rzeczy o niskim podobieństwie do mojego ramowania, wysokiej trafności tematycznej (odwrotność zwykłego rekomendera). *Test:* hit-rate użytecznych ataków vs szum.
+  - **Ogon (~20%) bierze człowiek z własną stawką** (ludzie + publikacja, nie gadżet). **Bramka 3 NIE ma checklistu do wyrecytowania** — inaczej niż 0–2; to nie luka, lecz konsekwencja self-reference wall (recytowalna reguła siedziałaby w tej samej ramie). Wymaga **zewnętrznej interwencji**. Pełne rozważania: [docs/Bramka-Na-Rame.md](docs/Bramka-Na-Rame.md).
+- Tryby porażki rozumowania (12 grzechów) jako operacyjny checklist bramek 0–2: [docs/Katalog-Grzechow-Rozumowania.md](docs/Katalog-Grzechow-Rozumowania.md).
 
 ## 6. Bramka 2 w praktyce — Pętla empiryczna (TYLKO twierdzenia z metryką)
 > Kolejność CELOWA: **najpierw mierzysz, potem szukasz rozwiązania** (lek na confirmation bias).
@@ -96,7 +102,7 @@ Wybierz jedną pozycję z roadmapy → zaplanuj na głos (najmniejszy działają
 ## 11. Finał nitki: dokument LaTeX → PDF
 Dojrzała nitka → **dokument LaTeX → PDF** (artefakt-produkt). Szablon: `szablon-dokumentu/`. Twarde reguły:
 - **Matematyka zawsze w LaTeX, nigdy unicode** — `$\perp$` nie `⟂`, `$\Delta$` nie `Δ`, `$\le$` nie `≤` (lint w CI).
-- **Formatka ⟂ treść** — `tresc/*.tex` to czysty content; zmiana wyglądu = jeden plik `formatka/slayer.sty`.
+- **Formatka $\perp$ treść** — `tresc/*.tex` to czysty content; zmiana wyglądu = jeden plik `formatka/slayer.sty`.
 - **Wykres + podpis na pierwszej stronie** (empiria od razu widoczna) · **podpis autorem** · **kompilacja w CI** (PDF jako artefakt).
 
 ## 12. Git / higiena

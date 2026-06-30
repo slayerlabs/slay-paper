@@ -35,7 +35,7 @@ Pliki agenta w root projektu: `AGENTS.md` (źródło prawdy reguł) + `CLAUDE.md
 ## Przepływ dialektyczny
 1. **Cel** (Cxx) — po co, dla kogo, **sukces (mierzalny)** + kryterium falsyfikowalne, zakres.
 2. **Teza** (Txx) — proponowane podejście. *Jeśli nie umiesz napisać przekonującej Antytezy w jednym zdaniu → to nie Teza, to ADR (`20-Decyzje/`).*
-3. **Antyteza** (ATxx) — **najmocniejszy** kontrargument (steelman, ≥3 punkty), nie słomiany strach na wróble.
+3. **Antyteza** (ATxx) — **najmocniejszy** kontrargument (steelman, $\ge 3$ punkty), nie słomiany strach na wróble.
 4. **Synteza** (Sxx) — rozstrzygnięcie przez **zmienną kontekstową** (nie binarny wybór) + **KRYTERIUM = warunek obalenia** (konkretny test/pomiar/próg z góry, który może OBLAĆ — nie „akceptowalny %", tylko liczba). Synteza to *propozycja* — potwierdzana w Ewaluacji. **Bez warunku obalenia synteza jest niesprawdzalna.**
 5. **Decyzja** (Dxx) — gdy alternatywa jasna: ADR z Reject/Implements/Reversibility/Action items.
 
@@ -87,6 +87,34 @@ Dokumenty w `docs/` to **warsztat** (dialektyka, ewaluacja). Dojrzała nitka/pro
 3. Dopisz węzeł do `docs/INDEX.md` (lub uruchom `python3 scripts/generate-ledger.py`).
 
 Frontmatter — pełna specyfikacja i pola opcjonalne (`synthesizes`/`implements`/`rejects`/`data_decyzji`) w [AGENTS.md §8](../AGENTS.md).
+
+### Mini-przykład: gotowy węzeł (Synteza) — żeby nie trzeba było otwierać folderu
+```markdown
+---
+type: synteza
+id: S1
+title: "Cache warstwowy zamiast pełnego in-memory"
+status: propozycja
+parents: ["T1", "AT1"]
+synthesizes: ["T1", "AT1"]
+author: Ula
+date: 2026-06-30
+created_at: 2026-06-30
+---
+
+# S1 — Cache warstwowy zamiast pełnego in-memory
+
+## Synteza
+Zmienna kontekstowa = rozmiar gorącego zbioru. Mieści się w RAM (< ~2 GB) → in-memory (T1);
+powyżej → L1 in-memory + L2 na dysku (AT1 miała rację dla dużych zbiorów). Nie binarny wybór.
+
+## Kryterium obalenia (POMIAR / DOWÓD — próg z góry)
+p99 latencji L2 < 5 ms na zbiorze 10 GB. Jeśli p99 > 5 ms — synteza upada, wracamy do
+pełnego in-memory z shardingiem. (Próg ustalony PRZED testem — anty-HARKing.)
+
+## Powiązania
+[[../10-Tezy/T1-cache-in-memory]] ↔ [[../15-Antytezy/AT1-koszt-ram]]
+```
 
 ## Checklist „ustaw od zera"
 1. `docs/INDEX.md` + foldery `00-Cele 10-Tezy 15-Antytezy 25-Syntezy 20-Decyzje` **i `90-Ewaluacja`** (szablony już są w repo).

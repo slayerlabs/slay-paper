@@ -32,7 +32,7 @@ nawet zadać jako pytania.
    cokolwiek w pełni zautomatyzujesz, w pełni wyspecyfikujesz, a co specyfikujesz, jest wewnątrz
    ramy i dziedziczy jej ślepe plamy. Rok szukania „tego mechanizmu" zawiódł, bo szukał rzeczy
    buildowalnej, a ta rzecz jest **społeczna**.
-3. **Sprzeciw ≠ zewnętrzność.** Anty-Ty to Ty z odwróconym znakiem (ta sama oś, ten sam
+3. **Sprzeciw $\ne$ zewnętrzność.** Anty-Ty to Ty z odwróconym znakiem (ta sama oś, ten sam
    słownik, te same pytania), więc maksymalnie wchłanialny. Marker prawdziwej zewnętrzności to
    **obojętność, nie opór**: rama, która nie wie, że istniejesz, i przejmuje się innymi pytaniami.
 4. **Zewnętrzność daje tylko agent z własną stawką** → ludzie + publikacja, nie gadżet.
@@ -79,7 +79,7 @@ Pierwsze liczby zamiast kolejnej godziny rozważań:
 - **held-out link recovery:** odłóż część `[[linków]]`/syntez, trenuj na reszcie, sprawdź czy
   mikro odzyskuje odłożone relacje lepiej niż płaski index + retrieval i niż frontier. Odzyskuje
   niewidziane → zgeneralizował. Nie → zapamiętał (wierszyk).
-- **consistency-F1:** wstrzyknij znane sprzeczności, zmierz wykrycie. Spójność ≠ prawda
+- **consistency-F1:** wstrzyknij znane sprzeczności, zmierz wykrycie. Spójność $\ne$ prawda
   (korpus może być spójnie fałszywy) — to druga bramka, komplementarna, nie zamiennik.
 - **ściana danych:** korpus docsów jest malutki → ryzyko memoryzacji zamiast generalizacji.
   Dźwignie: model na tyle mały, że musi kompresować; augmentacja (frontier jako generator, nie

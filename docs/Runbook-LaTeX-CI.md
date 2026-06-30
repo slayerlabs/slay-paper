@@ -14,7 +14,7 @@ created_at: 2026-06-23
 > kompilowany automatycznie do PDF. Cel: **spójny format** dla wszystkich dokumentów
 > + artefakt do prezentacji / ściąga przed prelekcją. Działający przykład: `TFT-DuoCoach/paper/`.
 
-## Zasada nadrzędna: formatka ⟂ treść
+## Zasada nadrzędna: formatka osobno od treści
 Rozdziel **wygląd** od **treści**, żeby dało się podmienić formatkę bez ruszania merytoryki:
 ```
 paper/

@@ -25,16 +25,19 @@ created_at: <YYYY-MM-DD>
 <!-- LEDGER:END -->
 
 ## Cele (drzewo)
+<!-- TODO: wiersze poniżej to przykłady (placeholdery `...`) — podmień na realne węzły lub usuń. Auto-ledger powyżej jest źródłem prawdy. -->
 | # | Cel | Status | Blokuje / nast. |
 |---|-----|--------|-----------------|
 | 1 | [[00-Cele/C1-...]] |  |  |
 
 ## Nitki dialektyczne (Teza ↔ Antyteza → Synteza)
+<!-- TODO: przykładowa nitka — podmień na realne T/AT/S lub usuń po pierwszym użyciu. -->
 | # | Teza | Antyteza | Synteza | Status |
 |---|------|----------|---------|--------|
 | 1 | [[10-Tezy/T1-...]] | [[15-Antytezy/AT1-...]] | [[25-Syntezy/S1-...]] |  |
 
 ## Decyzje (ADR)
+<!-- TODO: przykładowa decyzja — podmień na realne ADR lub usuń po pierwszym użyciu. -->
 | # | Tytuł | Status |
 |---|-------|--------|
 | 1 | [[20-Decyzje/D1-...]] |  |

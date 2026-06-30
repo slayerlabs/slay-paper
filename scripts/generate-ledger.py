@@ -30,7 +30,13 @@ BLOCK_RE = re.compile(
 
 
 def parse_frontmatter(text: str) -> dict | None:
-    """Minimalny parser frontmatteru YAML (płaskie key: value + proste listy)."""
+    """Minimalny parser frontmatteru YAML — CELOWO ograniczony.
+
+    Obsługuje tylko płaskie `key: value` + inline-listy (`["a","b"]`). NIE obsługuje
+    wielowierszowych skalarów blokowych (`|`, `>`) ani map zagnieżdżonych — frontmatter
+    węzła jest z założenia płaski (type/id/title/status/parents/...). Brak zależności (pyyaml)
+    jest świadomym wyborem: skrypt ma działać na czystym stdlib w CI.
+    """
     if not text.startswith("---"):
         return None
     lines = text.splitlines()

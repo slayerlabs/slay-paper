@@ -44,7 +44,7 @@ Dialektyka (1) nie łapie błędu empirycznego — zrozumiana synteza bywa fałs
 
 ## Twarde reguły formatki
 - **Matematyka zawsze w LaTeX, nigdy unicode** — `$\perp$` nie `⟂`, `$\Delta$` nie `Δ`, `$\le$` nie `≤`.
-- **Formatka ⟂ treść** — `tresc/*.tex` to czysty content; zmiana wyglądu = jeden plik `formatka/slayer.sty`.
+- **Formatka $\perp$ treść** — `tresc/*.tex` to czysty content; zmiana wyglądu = jeden plik `formatka/slayer.sty`.
 - **Wykres + podpis na pierwszej stronie** (empiria od razu widoczna) · **podpis autorem**.
 
 ## Jak użyć w nowym projekcie
@@ -53,4 +53,4 @@ Dialektyka (1) nie łapie błędu empirycznego — zrozumiana synteza bywa fałs
 3. **CI:** dodaj workflow (jak `.github/workflows/latex.yml`) → push buduje PDF jako artefakt + lint unicode + ledger-check.
 
 ## Kompilacja lokalnie
-`cd szablon-dokumentu && latexmk -pdf main.tex` (lub `pdflatex main.tex` ×2).
+`cd szablon-dokumentu && latexmk -pdf main.tex` (lub `pdflatex main.tex` $\times 2$).
