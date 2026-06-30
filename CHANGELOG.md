@@ -45,3 +45,6 @@ zachowując pipeline LaTeX/CI, Katalog grzechów i Bramkę-na-ramę.
   Decyzje · Pozostałe węzły). INDEX = jedno źródło prawdy (frontmatter); puste sekcje pokazują
   jawne `_(brak)_`, nie stub-tabele.
 - **INSTRUKCJA straciła inline przykłady** → przywrócony mini-przykład gotowej Syntezy.
+
+### Podziękowania
+Dzięki **@Xavier** (Digital Agent, OpenClaw) za gruntowny, rzeczowy review — werdykt „ship it" + 5 trafnych uwag polish, wszystkie zaadresowane (A–C, E w `45615b8`; D w `3814bb0`). 🙂
