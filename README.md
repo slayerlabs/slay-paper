@@ -37,7 +37,27 @@ slay-paper/
 | **2** | empiryczna (ewaluacja) | proxy / pareidolia — **warunek obalenia** doczepiony do syntezy |
 | **3** | na ramę (zewnętrzność) | ślepota ramy — czy w ogóle zadałem właściwe pytanie |
 
-Dialektyka (1) nie łapie błędu empirycznego — zrozumiana synteza bywa fałszywa, łapie ją ewaluacja (2). Dlatego **żadna synteza bez warunku obalenia.** Pełny model + procedura (pętla empiryczna baseline-first): [AGENTS.md](AGENTS.md) §5–6 · [docs/INSTRUKCJA-Dokumenty-Dialektyczne.md](docs/INSTRUKCJA-Dokumenty-Dialektyczne.md). Bramka 3 nie jest w pełni automatyzowalna: [docs/Bramka-Na-Rame.md](docs/Bramka-Na-Rame.md).
+Dialektyka (1) nie łapie błędu empirycznego — dlatego **sercem metody jest Bramka 2** (niżej). Bramka 3 nie jest w pełni automatyzowalna: [docs/Bramka-Na-Rame.md](docs/Bramka-Na-Rame.md).
+
+## ⭐ Bramka 2 — pętla empiryczna (serce metody)
+
+Najbardziej wyróżniająca część. Odwraca naturalną (i błędną) kolejność pracy:
+
+> **Najpierw MIERZYSZ, potem szukasz rozwiązania.** Nie „mam pomysł → udowodnię, że działa" (to confirmation bias), tylko „mam problem → baseline → próg → dopiero metoda".
+
+Kolejność celowa:
+
+`Sanity → Problem → (R1 prior-art light) → Zapis liczbowy → Baseline (+ próg z góry) → (R2 research PO baseline) → Metoda (jedna, apple-to-apple) → Weryfikacja (CI/p vs baseline vs próg)`
+
+- **Próg z góry** — definiujesz PRZED testem (+X pp). Anti-p-hacking / anti-HARKing: nie da się dostroić wniosku do wyniku.
+- **Baseline** — najprostszy, darmowy, uczciwy i **ZMIERZONY** (random → TF-IDF/in-degree → BM25). Bez baseline „lepiej" nic nie znaczy.
+- **Higiena** — train/test bez przecieku; progu NIE stroisz na teście; raportujesz CI/wariancję, nie samą średnią.
+- **Warunek obalenia** — każda synteza nosi konkretny pomiar, który może ją OBALIĆ. Bez tego jest niesprawdzalna.
+- **Granica** — proces / konwencja / ADR (brak metryki) → pętla NIE obowiązuje (nie rób cargo-cultu; kroki bez myślenia = forma bez treści).
+
+**Dlaczego to najważniejsze:** zrozumiana, ładnie rozpisana synteza potrafi być **fałszywa**, dopóki uczciwy held-out jej nie obali — a tego Bramka 1 (dialektyka) NIE łapie. Bramka 2 to moment, w którym projekt mówi, co dzieje się **NAPRAWDĘ**, a nie co założyłeś. Adwersarialnie podważaj własne wyniki, zanim je ogłosisz.
+
+Pełny model + procedura: [AGENTS.md](AGENTS.md) §5–6 · [docs/INSTRUKCJA-Dokumenty-Dialektyczne.md](docs/INSTRUKCJA-Dokumenty-Dialektyczne.md) · 12 trybów porażki: [docs/Katalog-Grzechow-Rozumowania.md](docs/Katalog-Grzechow-Rozumowania.md).
 
 ## Pliki agenta (vibe-coding)
 `AGENTS.md` = źródło prawdy reguł; `CLAUDE.md` i `.cursor/rules/` tylko odsyłają tam (jedno źródło, zero rozjazdu między narzędziami). Kopiując do projektu — uzupełnij sekcję „Kontekst projektu" w `AGENTS.md`.
