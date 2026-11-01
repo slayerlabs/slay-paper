@@ -15,7 +15,7 @@ created_at: <YYYY-MM-DD>
 > Nowy węzeł: skopiuj `_TEMPLATE.md`, nadaj `id`, uruchom `python3 scripts/generate-ledger.py`.
 
 <!-- LEDGER:START (auto: scripts/generate-ledger.py; NIE EDYTUJ RĘCZNIE) -->
-> **Ledger** (auto, 4 węzłów). NIE edytuj ręcznie — `scripts/generate-ledger.py`.
+> **Ledger** (auto, 5 węzłów). NIE edytuj ręcznie — `scripts/generate-ledger.py`.
 
 ### Cele
 _(brak — dodaj węzeł `type: cel` z `00-Cele/_TEMPLATE.md`)_
@@ -31,6 +31,7 @@ _(brak — ADR w `20-Decyzje/`)_
 |---|---|---|---|---|
 | R-GRZECHY | reference | Katalog grzechów rozumowania — operacyjny checklist bramek 0–2 | aktywny | [R-GRZECHY](Katalog-Grzechow-Rozumowania.md) |
 | R-RAMA | reference | Bramka na ramę i zewnętrzność (bramka 3 — notatka robocza) | w-dyskusji | [R-RAMA](Bramka-Na-Rame.md) |
+| R-RYGOR | reference | Rygor proporcjonalny do stawki — poziomy decyzji, koszty, losowy audyt | propozycja | [R-RYGOR](Rygor-Proporcjonalny.md) |
 | RB-LATEX-CI | runbook | Runbook: dokument LaTeX → PDF w CI (formatka osobno od treści) | aktywny | [RB-LATEX-CI](Runbook-LaTeX-CI.md) |
 | SZABLON-DIAL | instrukcja | Szablon dokumentacji dialektycznej Slayer — jak ustawić dokumenty (uniwersalnie) | aktywny | [SZABLON-DIAL](INSTRUKCJA-Dokumenty-Dialektyczne.md) |
 <!-- LEDGER:END -->
