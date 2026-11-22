@@ -40,7 +40,7 @@ Pliki agenta w root projektu: `AGENTS.md` (źródło prawdy reguł) + `CLAUDE.md
 5. **Decyzja** (Dxx) — gdy alternatywa jasna: ADR z Reject/Implements/Reversibility/Action items.
 
 ## ⭐ Ewaluacja — rzecz NAJWAŻNIEJSZA („co się dzieje")
-Regularny dokument stanu projektu. Zasada: **żadnej tezy bez dowodu; nie zakładaj — sprawdź.** Łap własne błędy, zanim je ogłosisz (adwersarialnie podważaj własne wyniki).
+Regularny dokument stanu projektu. Zasada: **żadnej tezy bez dowodu; nie zakładaj — sprawdź.** Siła dowodu proporcjonalna do konsekwencji błędnej decyzji i kosztu jej odwrócenia; hipoteza może stać bez dowodu, jeśli jest **oznaczona jako hipoteza**. Łap własne błędy, zanim je ogłosisz (adwersarialnie podważaj własne wyniki).
 - **✅ Działa** (z dowodem/liczbą) · **❌ Nie działa / otwarte** · **🔄 Co się zmieniło** · **Pętla empiryczna** · **Czy tezy/syntezy się bronią?** · **➡️ Następne kroki**.
 - Aktualizuj **po każdym istotnym kroku** (eksperyment, deploy, ficzer, pomiar). To tu wychodzi prawda projektu — nie w założeniach.
 

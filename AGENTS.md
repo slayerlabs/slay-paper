@@ -12,13 +12,14 @@ To **nie** folder z notatkami. To **knowledge-engineering system**: dokumentujem
 4. **Atomic markdown + frontmatter** = idealna jednostka dla RAG / MCP retrieval (patrz §9).
 
 **Reguła nadrzędna:** *żadnej tezy bez dowodu; nie zakładaj — sprawdź.* Forma istnieje, by **wymusić myślenie**, nie żeby je udawać.
+**Uzupełnienie — dowód proporcjonalny:** siła wymaganego dowodu rośnie z konsekwencją błędnej decyzji i kosztem jej odwrócenia. Hipoteza nie musi jeszcze mieć dowodu, ale musi być **jawnie oznaczona jako hipoteza** (np. `[HIPOTEZA]`, `[INFERENCE]`). Pomysł na eksperyment wymaga mniej niż publikacja zbioru z możliwymi danymi wrażliwymi, wydatek, usunięcie albo zmiana publicznej liczby. **Poziom rygoru ustalasz przed wynikiem; obniżyć go może tylko ktoś inny niż autor decyzji.** Poziomy, zamknięta lista decyzji nieodwracalnych, pięć kosztów i losowy audyt rygoru: [docs/Rygor-Proporcjonalny.md](docs/Rygor-Proporcjonalny.md).
 
 ## 1. Najpierw przeczytaj
 `docs/INDEX.md` — mapa projektu (cel, nitki, ewaluacja, reference). Decyzje rozstrzygnięte w `docs/25-Syntezy/` i `docs/20-Decyzje/` — trzymaj się ich albo **świadomie** zaktualizuj dokument (nie dryfuj po cichu).
 
 ## 2. Reguły twarde
 1. **Małe kroki.** Jeden kawałek na raz; pokaż CO + DLACZEGO; czekaj na „dalej".
-2. **Żadnej tezy bez dowodu.** Nie zgaduj formatów/API/danych — sprawdź w docs / realnej odpowiedzi.
+2. **Żadnej tezy bez dowodu.** Nie zgaduj formatów/API/danych — sprawdź w docs / realnej odpowiedzi. Rygor dowodu proporcjonalny do kosztu błędu i jego odwrócenia; hipoteza bez dowodu jest dozwolona, jeśli jest oznaczona jako hipoteza (patrz reguła nadrzędna).
 3. **`git add <konkretne pliki>`** (NIGDY `git add .`); sensowny commit message. **PR-only**: feature branch → PR (nie pushuj na `main`/`Deploy` bezpośrednio).
 4. **Sekrety NIGDY do repo** → `.env` (w `.gitignore`); commituj `.env.example` (bez wartości).
 5. **Weryfikuj, zanim ogłosisz.** Nie mów „działa" bez zbudowania/odpalenia; adwersarialnie sprawdź własny wynik.
